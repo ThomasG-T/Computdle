@@ -1,0 +1,392 @@
+/* General styles for the body and game area */
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Header styles */
+header {
+    background: #38d233; /* Fondo verde */
+    color: white;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+
+h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+
+/* Game area styles */
+#game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Grid container */
+#grid {
+    display: grid;
+    gap: 5px; /* Espacio entre celdas */
+    margin-bottom: 20px; /* Espacio debajo de la cuadrícula */
+}
+
+
+/* Keyboard container */
+#keyboard {
+    display: grid;
+    gap: 5px;
+    margin-bottom: 20px;
+    justify-content: center; /* Alinear el teclado virtual al centro */
+}
+
+
+/* Key rows */
+.key-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+
+/* Key styles */
+.key {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+.key-special {
+    background-color: #d3d3d3;
+    font-weight: bold;
+    width: 80px; /* Ajusta el ancho según sea necesario */
+    margin: 5px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.key.correct {
+    background-color: #3fd439;
+    color: white;
+}
+
+
+.key.present {
+    background-color: #f1ee33;
+}
+
+
+.key.absent {
+    background-color: #999999;
+    color: white;
+}
+
+
+#hintText {
+    margin-bottom: 20px; /* Espacio debajo del texto de pista */
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+
+/* Control buttons styles */
+#controls {
+    display: flex;
+    justify-content: center; /* Alinear botones horizontalmente al centro */
+    gap: 10px; /* Espacio entre botones */
+    margin-bottom: 20px; /* Espacio debajo de los controles */
+}
+
+
+/* Difficulty selector container */
+#difficulty-container {
+    margin-bottom: 20px; /* Espacio debajo del selector de dificultad */
+    display: flex;
+    justify-content: center; /* Alinear selector de dificultad al centro */
+}
+
+
+/* Button styles */
+button {
+    background-color: #3fd439; /* Fondo verde */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+
+button:hover {
+    background-color: white;
+    color: #3fd439;
+    border: solid 1px #3fd439;
+}
+
+
+button:active {
+    transform: scale(0.98); /* Reducción ligera del tamaño del botón al hacer clic */
+}
+
+
+/* Difficulty selector */
+#difficulty {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    border: 1px solid #ccc; /* Agregar borde al selector */
+    background-color: white; /* Fondo blanco */
+    color: #333; /* Color de texto por defecto */
+}
+
+
+#difficulty option[value="easy"] {
+    color: green; /* Color para dificultad Fácil */
+}
+
+
+#difficulty option[value="medium"] {
+    color: orange; /* Color para dificultad Media */
+}
+
+
+#difficulty option[value="hard"] {
+    color: red; /* Color para dificultad Difícil */
+}
+
+
+/* Grid cell styles */
+.grid-cell {
+    width: 50px;
+    height: 50px;
+    background: #ddd;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    transition: background 0.3s, transform 0.3s;
+}
+
+
+/* Styles for different cell states */
+.grid-cell.correct {
+    background-color: #3fd439; /* Verde */
+    color: white;
+    animation: fireGreenAnimation 1s infinite; /* Animación de fuego verde para celdas verdes */
+}
+
+
+.grid-cell.present {
+    background-color: #f1ee33; /* Amarillo */
+    color: white;
+    animation: fireYellowAnimation 1s infinite; /* Animación de fuego amarillo para celdas amarillas */
+}
+
+
+.grid-cell.absent {
+    background-color: #787c7e; /* Gris oscuro */
+    color: white;
+    transform: scale(1.1); /* Escalar para resaltar */
+}
+
+
+/* Animation for bouncing cells */
+.grid-cell.bounce {
+    animation: bounce 0.6s ease;
+}
+
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+
+/* Animation for flipping cells */
+.grid-cell.flip {
+    animation: flip 0.6s ease;
+}
+
+
+@keyframes flip {
+    0% {
+        transform: rotateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: rotateY(180deg);
+        opacity: 0;
+    }
+    100% {
+        transform: rotateY(360deg);
+        opacity: 1;
+    }
+}
+
+
+/* Styles for blocked cells (when hint is used) */
+.grid-cell.celda-bloqueada {
+    background-color: #ddd; /* Color de fondo para celdas bloqueadas */
+    position: relative; /* Necesario para posicionar la cruz */
+}
+
+
+.grid-cell.celda-bloqueada::after {
+    content: '✗'; /* Símbolo de la cruz */
+    color: rgb(0, 0, 0); /* Color de la cruz */
+    font-size: 20px; /* Tamaño de la cruz */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrar la cruz */
+}
+
+
+/* Disabled key styles */
+.key-disabled {
+    background-color: #ccc; /* Color de fondo para teclas deshabilitadas */
+    color: #666; /* Color de texto para teclas deshabilitadas */
+    cursor: not-allowed; /* Cambiar el cursor al pasar sobre teclas deshabilitadas */
+}
+
+
+/* Win message styles */
+#message {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 20px;
+    opacity: 0;
+    animation: rgbBlink 2s infinite, slideIn 1s forwards;
+}
+
+
+@keyframes rgbBlink {
+    0% {
+        color: rgb(138, 5, 5); /* Rojo */
+        text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    }
+    25% {
+        color: rgb(10, 158, 10); /* Verde */
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    }
+    50% {
+        color: rgb(6, 6, 141); /* Azul */
+        text-shadow: 0 0 10px rgba(0, 0, 255, 0.5);
+    }
+    75% {
+        color: rgb(143, 143, 10); /* Amarillo */
+        text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+    }
+    100% {
+        color: rgb(128, 7, 7); /* Volver a Rojo */
+        text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    }
+}
+
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+/* Difficulty-specific styles */
+.difficulty-hard #game {
+    background: rgba(255, 69, 0, 0.8); /* Fondo animado para modo difícil */
+    animation: fireAnimation 2s infinite; /* Animación de fuego */
+}
+
+
+/* Keyframes for fire animation */
+@keyframes fireAnimation {
+    0% { background: rgba(255, 69, 0, 0.8); }
+    50% { background: rgba(255, 140, 0, 0.8); }
+    100% { background: rgba(255, 69, 0, 0.8); }
+}
+
+
+/* Keyframes for fire animation specific to green cells */
+@keyframes fireGreenAnimation {
+    0% { background: rgba(0, 255, 0, 0.8); }
+    50% { background: rgba(50, 205, 50, 0.8); }
+    100% { background: rgba(0, 255, 0, 0.8); }
+}
+
+
+/* Keyframes for fire animation specific to yellow cells */
+@keyframes fireYellowAnimation {
+    0% { background: rgba(255, 255, 0, 0.8); }
+    50% { background: rgba(255, 215, 0, 0.8); }
+    100% { background: rgba(255, 255, 0, 0.8); }
+}
+
+
+/* New animations for easy difficulty */
+.difficulty-easy #game {
+    background: rgba(240, 240, 240, 0.8); /* Fondo más tranquilo para modo fácil */
+}
+
+
+/* Keyframes for soft glow animation */
+@keyframes softGlow {
+    0% { background: #e0f7fa; }
+    50% { background: #b2ebf2; }
+    100% { background: #e0f7fa; }
+}
+
+
+/* Keyframes for gentle pulse animation */
+@keyframes gentlePulse {
+    0% { background: #fce4ec; }
+    50% { background: #f8bbd0; }
+    100% { background: #fce4ec; }
+}
+
+
+/* Apply the animations to the cells in easy difficulty */
+.difficulty-easy .grid-cell.correct {
+    animation: gentlePulse 2s infinite; /* Animación de pulso suave para celdas verdes en modo fácil */
+}
+
+
+.difficulty-easy .grid-cell.present {
+    animation: softGlow 2s infinite; /* Animación de resplandor suave para celdas amarillas en modo fácil */
+}
+
+
